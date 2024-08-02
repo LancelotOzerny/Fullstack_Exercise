@@ -45,5 +45,16 @@ function getTr(review)
 
 function Delete(id)
 {
-    console.log('Deleted ' + id);
+    $.ajax({
+        url: '/crud/delete.php',
+        method: 'post',
+        data: {
+            'id' : id
+        },
+        success: (data) => {
+            let dataList = JSON.parse(data);
+
+            RewriteTable();
+        },
+    });
 }
