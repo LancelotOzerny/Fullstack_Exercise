@@ -12,11 +12,33 @@ class ReviewTable
         echo '</pre>';
     }
 
-    public static function read(array $data = []) : array
+    public static function read(array $sort = [], int $limit = -1, int $offset = 0) : array
     {
-        $dbArr = DataBase::connection()->query('SELECT * FROM Reviews');
-        $arr = $dbArr->fetchAll(PDO::FETCH_ASSOC);
-        return $arr;
+        $isLimit = $limit !== -1;
+
+        $sql = 'SELECT * FROM Reviews';
+        if ($isLimit)
+        {
+            $sql .= ' LIMIT :limit OFFSET :offset';
+        }
+
+        $prepare = DataBase::connection()->prepare($sql);
+
+        if ($isLimit)
+        {
+            $prepare->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $prepare->bindValue(':offset', $offset, PDO::PARAM_INT);
+        }
+
+        $prepare->execute();
+        return $prepare->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function count()
+    {
+        $query = DataBase::connection()->query('SELECT count(*) as `count` FROM Reviews');
+        $arr = $query->fetch(PDO::FETCH_ASSOC);
+        return $arr['count'];
     }
 
     public static function delete($id) : bool

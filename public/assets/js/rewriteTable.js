@@ -10,22 +10,24 @@ function RewriteTable()
     $.ajax({
         url: '/crud/read.php',
         method: 'post',
-        data: {},
+        data: {
+            'limit' : ReviewsConfig['countOnPage'],
+            'offset' : ReviewsConfig['activePage'] * ReviewsConfig['countOnPage'],
+        },
         success: (data) => {
             let dataList = JSON.parse(data);
 
             let list = $("#ReviewsList");
             list.html('');
 
-            let reviewsLength = dataList['reviews'].length;
-            for (let i = 0; i < reviewsLength; ++i)
+            for (let i = 0, count = dataList['reviews'].length; i < count; ++i)
             {
                 let tr = GetTr(dataList['reviews'][i]);
                 list.append(tr);
             }
 
-            ReviewsConfig['reviewsCount'] = reviewsLength;
-            RewritePageButtons(reviewsLength / ReviewsConfig['countOnPage']);
+            ReviewsConfig['reviewsCount'] = dataList['count'];
+            RewritePageButtons(ReviewsConfig['reviewsCount'] / ReviewsConfig['countOnPage']);
         },
     });
 }
