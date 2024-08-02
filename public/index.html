@@ -86,7 +86,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
-                            <button class="btn btn-success">Отправить</button>
+                            <button id="CreateButton" type="button" class="btn btn-success">Отправить</button>
                         </div>
                     </div>
                 </form>
@@ -102,6 +102,10 @@
 
     <script>
         RewriteTable();
+
+        $("#CreateButton").click(() => {
+            Create();
+        });
     </script>
 </body>
 </html>
