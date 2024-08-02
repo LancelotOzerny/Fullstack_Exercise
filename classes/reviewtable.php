@@ -12,7 +12,7 @@ class ReviewTable
         echo '</pre>';
     }
 
-    public static function read() : array
+    public static function read(array $data = []) : array
     {
         $dbArr = DataBase::connection()->query('SELECT * FROM Reviews');
         $arr = $dbArr->fetchAll(PDO::FETCH_ASSOC);
@@ -23,6 +23,39 @@ class ReviewTable
     {
         $prepare = DataBase::connection()->prepare('DELETE FROM Reviews WHERE id = :id');
         $prepare->bindValue(':id', $id, PDO::PARAM_INT);
+        return $prepare->execute();
+    }
+
+    public static function create(array $insertData) : bool
+    {
+        $keys = array_keys($insertData);
+
+        $valuesStr = '';
+        $paramsStr = '';
+
+        for ($i = 0, $count = count($keys); $i < $count; ++$i)
+        {
+            $key = $keys[$i];
+            $valuesStr .= ":$key";
+            $paramsStr .= "`$key`";
+
+            if ($i !== $count -1)
+            {
+                $valuesStr .= ", ";
+                $paramsStr .= ", ";
+            }
+        }
+
+        $sql = "INSERT INTO Reviews ($paramsStr) VALUES ($valuesStr)";
+        $prepare = DataBase::connection()->prepare($sql);
+
+        foreach ($insertData as $key => $value)
+        {
+            $prepare->bindValue(":$key", $value);
+        }
+
+        file_put_contents(dirname($_SERVER['DOCUMENT_ROOT'])  . '/logs/log.txt', $sql . PHP_EOL . PHP_EOL);
+
         return $prepare->execute();
     }
 }
