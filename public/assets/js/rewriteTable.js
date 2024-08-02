@@ -13,14 +13,14 @@ function RewriteTable()
 
             for (let i = 0, count = dataList['reviews'].length; i < count; ++i)
             {
-                let tr = getTr(dataList['reviews'][i]);
+                let tr = GetTr(dataList['reviews'][i]);
                 list.append(tr);
             }
         },
     });
 }
 
-function getTr(review)
+function GetTr(review)
 {
     let tr = $('<tr>');
 
@@ -41,20 +41,4 @@ function getTr(review)
     tr.append($("<td>").append(deleteButton));
 
     return tr;
-}
-
-function Delete(id)
-{
-    $.ajax({
-        url: '/crud/delete.php',
-        method: 'post',
-        data: {
-            'id' : id
-        },
-        success: (data) => {
-            let dataList = JSON.parse(data);
-
-            RewriteTable();
-        },
-    });
 }
