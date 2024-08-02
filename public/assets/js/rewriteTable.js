@@ -1,3 +1,9 @@
+let ReviewsConfig = {
+    'countOnPage': 3,
+    'activePage': 0,
+    'reviewsCount': 0,
+}
+
 function RewriteTable()
 {
 
@@ -11,13 +17,15 @@ function RewriteTable()
             let list = $("#ReviewsList");
             list.html('');
 
-            for (let i = 0, count = dataList['reviews'].length; i < count; ++i)
+            let reviewsLength = dataList['reviews'].length;
+            for (let i = 0; i < reviewsLength; ++i)
             {
                 let tr = GetTr(dataList['reviews'][i]);
                 list.append(tr);
             }
 
-            RewritePageButtons(4);
+            ReviewsConfig['reviewsCount'] = reviewsLength;
+            RewritePageButtons(reviewsLength / ReviewsConfig['countOnPage']);
         },
     });
 }
@@ -54,8 +62,13 @@ function RewritePageButtons(pageButtonsCount)
     {
       let button = $("<button>", {
           type: 'button',
-          class: 'btn btn-' + (i !== 0 ? 'outline-' : '') + 'secondary',
-          text: i,
+          class: 'btn btn-' + (i !== ReviewsConfig['activePage'] ? 'outline-' : '') + 'secondary',
+          text: i + 1,
+      });
+
+      button.click(function() {
+          ReviewsConfig['activePage'] = i;
+          RewriteTable();
       });
 
       btnGroup.append(button);
