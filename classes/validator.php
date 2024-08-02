@@ -12,11 +12,11 @@ class Validator
     {
         $errors = [];
 
-        if (empty($this->data['EMAIL']))
+        if (empty($this->data['email']))
         {
             $errors[] = 'Поле не может быть пустым!';
         }
-        else if (!filter_var($this->data['EMAIL'], FILTER_VALIDATE_EMAIL))
+        else if (!filter_var($this->data['email'], FILTER_VALIDATE_EMAIL))
         {
             $errors[] = 'Email введен некорректно!';
         }
@@ -28,7 +28,7 @@ class Validator
     {
         $errors = [];
 
-        if (empty($this->data['TEXT']))
+        if (empty($this->data['text']))
         {
             $errors[] = 'Поле не может быть пустым!';
         }
@@ -40,9 +40,9 @@ class Validator
     {
         $errors = [];
 
-        $len = strlen($this->data['NAME']);
+        $len = strlen($this->data['name']);
 
-        if (empty($this->data['NAME']))
+        if (empty($this->data['name']))
         {
             $errors[] = 'Поле не может быть пустым!';
         }
@@ -50,7 +50,7 @@ class Validator
         {
             $errors[] = 'Имя должно содержать от 4 и до 16 символов!';
         }
-        else if (!preg_match('/^[A-Za-z0-9]/', $this->data['NAME']))
+        else if (!preg_match('/^[A-Za-z0-9]/', $this->data['name']))
         {
             $errors[] = 'Имя может содержать только латинские буквы и цифры!';
         }
