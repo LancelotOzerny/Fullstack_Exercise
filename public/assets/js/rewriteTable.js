@@ -16,6 +16,8 @@ function RewriteTable()
                 let tr = GetTr(dataList['reviews'][i]);
                 list.append(tr);
             }
+
+            RewritePageButtons(4);
         },
     });
 }
@@ -41,4 +43,21 @@ function GetTr(review)
     tr.append($("<td>").append(deleteButton));
 
     return tr;
+}
+
+function RewritePageButtons(pageButtonsCount)
+{
+    let btnGroup = $("#PageButtonsGroup");
+    btnGroup.html('');
+
+    for (let i = 0; i < pageButtonsCount; ++i)
+    {
+      let button = $("<button>", {
+          type: 'button',
+          class: 'btn btn-' + (i !== 0 ? 'outline-' : '') + 'secondary',
+          text: i,
+      });
+
+      btnGroup.append(button);
+    }
 }
