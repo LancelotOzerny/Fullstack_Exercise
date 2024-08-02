@@ -54,8 +54,6 @@ class ReviewTable
             $prepare->bindValue(":$key", $value);
         }
 
-        file_put_contents(dirname($_SERVER['DOCUMENT_ROOT'])  . '/logs/log.txt', $sql . PHP_EOL . PHP_EOL);
-
         return $prepare->execute();
     }
 }
