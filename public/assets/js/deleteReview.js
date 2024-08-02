@@ -9,6 +9,11 @@ function Delete(id)
         success: (data) => {
             let dataList = JSON.parse(data);
 
+            if (ReviewsConfig['reviewsCount'] % ReviewsConfig['countOnPage'] === 1 && ReviewsConfig['activePage'] > 0)
+            {
+                ReviewsConfig['activePage']--;
+            }
+
             RewriteTable();
         },
     });

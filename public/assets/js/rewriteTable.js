@@ -6,7 +6,6 @@ let ReviewsConfig = {
 
 function RewriteTable()
 {
-
     $.ajax({
         url: '/crud/read.php',
         method: 'post',
@@ -69,8 +68,10 @@ function RewritePageButtons(pageButtonsCount)
       });
 
       button.click(function() {
+          $("#PageButtonsGroup>button").addClass('disabled')
           ReviewsConfig['activePage'] = i;
           RewriteTable();
+          $("#PageButtonsGroup>button").removeClass('disabled')
       });
 
       btnGroup.append(button);
