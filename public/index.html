@@ -22,63 +22,14 @@
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Комментарий</th>
                         <th scope="col">Пользователь</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Комментарий</th>
                         <th scope="col">Дата добавления</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td scope="col">0</td>
-                        <td scope="col">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, asperiores atque
-                            dicta doloremque eligendi ex fuga ipsa ipsum minima nam non praesentium quae quasi quo
-                            ratione reiciendis sit suscipit ut.
-                        </td>
-                        <td scope="col">Lancelot</td>
-                        <td scope="col">lancelot.ozernuy@gmail.com</td>
-                        <td scope="col">22:03:14<br/>19.10.2002</td>
-                        <td scope="col"><button class="btn btn-danger text-uppercase">delete</button></td>
-                    </tr>
-                    <tr>
-                        <td scope="col">0</td>
-                        <td scope="col">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, asperiores atque
-                            dicta doloremque eligendi ex fuga ipsa ipsum minima nam non praesentium quae quasi quo
-                            ratione reiciendis sit suscipit ut.
-                        </td>
-                        <td scope="col">Lancelot</td>
-                        <td scope="col">lancelot.ozernuy@gmail.com</td>
-                        <td scope="col">22:03:14<br/>19.10.2002</td>
-                        <td scope="col"><button class="btn btn-danger text-uppercase">delete</button></td>
-                    </tr>
-                    <tr>
-                        <td scope="col">0</td>
-                        <td scope="col">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, asperiores atque
-                            dicta doloremque eligendi ex fuga ipsa ipsum minima nam non praesentium quae quasi quo
-                            ratione reiciendis sit suscipit ut.
-                        </td>
-                        <td scope="col">Lancelot</td>
-                        <td scope="col">lancelot.ozernuy@gmail.com</td>
-                        <td scope="col">22:03:14<br/>19.10.2002</td>
-                        <td scope="col"><button class="btn btn-danger text-uppercase">delete</button></td>
-                    </tr>
-                    <tr>
-                        <td scope="col">0</td>
-                        <td scope="col">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, asperiores atque
-                            dicta doloremque eligendi ex fuga ipsa ipsum minima nam non praesentium quae quasi quo
-                            ratione reiciendis sit suscipit ut.
-                        </td>
-                        <td scope="col">Lancelot</td>
-                        <td scope="col">lancelot.ozernuy@gmail.com</td>
-                        <td scope="col">22:03:14<br/>19.10.2002</td>
-                        <td scope="col"><button class="btn btn-danger text-uppercase">delete</button></td>
-                    </tr>
-                    </tbody>
+                    <tbody id="ReviewsList"></tbody>
                 </table>
             </div>
         </div>
@@ -144,5 +95,10 @@
     </div>
 
     <script src="assets/js/jQuery-3.7.1.js"></script>
+    <script src="assets/js/updateTable.js"></script>
+
+    <script>
+        UpdateTable();
+    </script>
 </body>
 </html>
