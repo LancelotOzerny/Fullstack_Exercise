@@ -12,6 +12,13 @@ class ReviewTable
         echo '</pre>';
     }
 
+    public static function read() : array
+    {
+        $dbArr = DataBase::connection()->query('SELECT * FROM Reviews');
+        $arr = $dbArr->fetchAll(PDO::FETCH_ASSOC);
+        return $arr;
+    }
+
     public static function delete($id) : bool
     {
         $prepare = DataBase::connection()->prepare('DELETE FROM Reviews WHERE id = :id');
