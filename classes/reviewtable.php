@@ -16,7 +16,7 @@ class ReviewTable
     {
         $isLimit = $limit !== -1;
 
-        $sql = 'SELECT * FROM Reviews';
+        $sql = 'SELECT * FROM Reviews ORDER BY ' . ($sort['by'] ?? 'id') . " " . ($sort['direction'] ?? 'asc');
         if ($isLimit)
         {
             $sql .= ' LIMIT :limit OFFSET :offset';

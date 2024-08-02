@@ -2,6 +2,10 @@ let ReviewsConfig = {
     'countOnPage': 3,
     'activePage': 0,
     'reviewsCount': 0,
+    'sort': {
+        'by': 'id',
+        'direction': 'asc',
+    }
 }
 
 function RewriteTable()
@@ -12,6 +16,7 @@ function RewriteTable()
         data: {
             'limit' : ReviewsConfig['countOnPage'],
             'offset' : ReviewsConfig['activePage'] * ReviewsConfig['countOnPage'],
+            'sort': ReviewsConfig['sort'],
         },
         success: (data) => {
             let dataList = JSON.parse(data);
