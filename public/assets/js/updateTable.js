@@ -1,37 +1,46 @@
-function UpdateTable()
+function RewriteTable()
 {
-    let list = $("#ReviewsList");
 
-    list.html(getTr({
-        'id': '0',
-        'name': 'username',
-        'email': 'test@test.ru',
-        'text': 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        'date': '23:04:12 23.12.2023',
-    }))
+    $.ajax({
+        url: '/crud/read.php',
+        method: 'post',
+        data: {},
+        success: (data) => {
+            let dataList = JSON.parse(data);
 
-    function getTr(review)
-    {
-        let tr = $('<tr>');
+            let list = $("#ReviewsList");
+            list.html('');
 
-        let deleteButton = $("<button>", {
-            class: 'btn btn-danger text-uppercase',
-            text: 'delete',
-        });
+            for (let i = 0, count = dataList['reviews'].length; i < count; ++i)
+            {
+                let tr = getTr(dataList['reviews'][i]);
+                list.append(tr);
+            }
+        },
+    });
+}
 
-        deleteButton.click(function() {
-            Delete(review['id']);
-        });
+function getTr(review)
+{
+    let tr = $('<tr>');
 
-        tr.append($("<th>", { text: review['id'] }))
-        tr.append($("<td>", { text: review['name'] }))
-        tr.append($("<td>", { text: review['email'] }))
-        tr.append($("<td>", { text: review['text'] }))
-        tr.append($("<td>", { text: review['date'] }))
-        tr.append($("<td>").append(deleteButton));
+    let deleteButton = $("<button>", {
+        class: 'btn btn-danger text-uppercase',
+        text: 'delete',
+    });
 
-        return tr;
-    }
+    deleteButton.click(function() {
+        Delete(review['id']);
+    });
+
+    tr.append($("<th>", { text: review['id'] }))
+    tr.append($("<td>", { text: review['name'] }))
+    tr.append($("<td>", { text: review['email'] }))
+    tr.append($("<td>", { text: review['text'] }))
+    tr.append($("<td>", { text: review['date'] }))
+    tr.append($("<td>").append(deleteButton));
+
+    return tr;
 }
 
 function Delete(id)
