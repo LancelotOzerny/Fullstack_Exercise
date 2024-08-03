@@ -2,7 +2,9 @@
 require_once dirname($_SERVER['DOCUMENT_ROOT'])  . '/classes/reviewtable.php';
 require_once dirname($_SERVER['DOCUMENT_ROOT'])  . '/classes/validator.php';
 
-$data = [];
+$data = [
+    'errors' => []
+];
 
 if (empty($_POST))
 {

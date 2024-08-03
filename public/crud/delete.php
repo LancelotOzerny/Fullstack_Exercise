@@ -6,11 +6,11 @@ $data = [];
 if (isset($_POST['id']))
 {
     $id = intval($_POST['id']);
-    $data['ready'] = ReviewTable::delete($id);
+    $data['result'] = ReviewTable::delete($id);
 }
 else
 {
-    $data['errors'][] = 'Данные о комментарии для удаления не найдены!';
+    $data['errors']['delete'] = 'Данные о комментарии для удаления не найдены!';
 }
 
 die(json_encode($data));

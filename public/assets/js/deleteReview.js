@@ -15,6 +15,13 @@ function Delete(id)
             }
 
             RewriteTable();
+
+
+            OutputAjaxAlerts(
+                dataList,
+                'Пользователь успешно удален',
+                'При удалении пользователя произошла ошибка',
+            );
         },
     });
 }
