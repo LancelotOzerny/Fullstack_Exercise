@@ -98,30 +98,27 @@
     <script src="assets/js/jQuery-3.7.1.js"></script>
     <script src="assets/js/bootstrap.js"></script>
 
-    <script src="assets/js/toasts.js"></script>
-    <script src="assets/js/createReview.js"></script>
-    <script src="assets/js/rewriteTable.js"></script>
-    <script src="assets/js/deleteReview.js"></script>
+    <script src="assets/js/script.js"></script>
 
     <script>
-        RewriteTable();
+        ReviewsTable.Update();
 
         $("#CreateButton").click(() => {
-            Create();
+            ReviewsTable.Create()
         });
 
         $(".sort-mode").click(function() {
             let sortBy = $(this).attr('data-sort');
-            if (sortBy === ReviewsConfig['sort']['by'])
+            if (sortBy === ReviewsTable.sort['by'])
             {
-                ReviewsConfig['sort']['direction'] = ReviewsConfig['sort']['direction'] === 'desc' ? 'asc' : 'desc';
+                ReviewsTable.sort['direction'] = ReviewsTable.sort['direction'] === 'desc' ? 'asc' : 'desc';
             }
             else
             {
-                ReviewsConfig['sort']['by'] = sortBy;
+                ReviewsTable.sort['by'] = sortBy;
             }
 
-            RewriteTable();
+            ReviewsTable.Update();
         });
     </script>
 </body>
