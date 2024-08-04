@@ -56,7 +56,17 @@ class ReviewsController extends BaseController
     public function read()
     {
         $model = new ReviewsModel();
-        $data['reviews'] = $model->findAll();
+
+        $sort = $this->request->getPost('sort');
+        $sort_by = $sort['by'];
+        $sort_dir = $sort['direction'];
+
+        $limit = intval($this->request->getPost('limit'));
+        $offset = intval($this->request->getPost('offset'));
+
+        $data['reviews'] = $model->orderBy($sort_by, $sort_dir)->limit($limit)->offset($offset)->findAll();
+        $data['count'] = $model->countAllResults();
+
         return json_encode($data);
     }
 
