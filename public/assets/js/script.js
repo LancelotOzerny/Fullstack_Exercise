@@ -57,6 +57,10 @@ class ReviewsTable
                     'Пользователь успешно создан',
                     'При создании пользователя произошла ошибка',
                 );
+
+                $('#InputEmail').val('');
+                $('#InputName').val('');
+                $('#InputMessage').val('');
             },
             fail: (data) => {
                 $("#CreateButton").removeClass('disabled');
