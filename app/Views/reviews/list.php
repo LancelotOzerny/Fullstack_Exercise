@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <link rel="stylesheet" href="assets/css/bootstrap-4.4.1.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-4.4.1.css">
 </head>
 <body>
 <div class="container">
@@ -95,10 +95,10 @@
     </div>
 </div>
 
-<script src="assets/js/jQuery-3.7.1.js"></script>
-<script src="assets/js/bootstrap.js"></script>
+<script src="/assets/js/jQuery-3.7.1.js"></script>
+<script src="/assets/js/bootstrap.js"></script>
 
-<script src="assets/js/script.js"></script>
+<script src="/assets/js/script.js"></script>
 
 <script>
     ReviewsTable.Update();
